@@ -2,8 +2,7 @@ import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 // import { Link } from "react-router-dom";
-import Container from "../../container/Container";
-import Logo from "../../logo/Logo";
+import {Container, Logo} from "../index";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear(); // Get the current year

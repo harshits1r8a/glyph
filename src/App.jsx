@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Footer from "./footer/Footer"
+import { Footer } from "./component/index";
   
 
 
