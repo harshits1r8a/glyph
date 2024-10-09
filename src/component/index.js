@@ -1,8 +1,11 @@
+import BackHome from "./Button/BackHome";
 import Btn from "./Button/Btn";
 import DarkModeBTN from "./Button/DarkModeBTN";
 import Container from "./Container/Container";
 import Footer from "./Footer/Footer";
 import GlyphCard from "./Glyph/GlyphCard";
 import Header from "./Header/Header";
+import Input from "./Input";
+import Login from "./Login";
 import Logo from "./Logo/Logo";
-export { Btn, Container, DarkModeBTN,Footer, GlyphCard,Header, Logo};
+export { BackHome,Btn, Container, DarkModeBTN,Footer, GlyphCard,Header,Input,Login, Logo};

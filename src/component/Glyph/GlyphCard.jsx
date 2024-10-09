@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const GlyphCard = ({
   $id,
   title = "default title",
-  featuredImg = "https://images.pexels.com/photos/28687687/pexels-photo-28687687/free-photo-of-happy-couple-embracing-outdoors-in-elegant-attire.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  featuredImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREO3tkIJnmJZcWmgLLR-z973QVHQ8zbwDGnw&s",
   user_id = "Harshit",
   content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolores unde suscipit corrupti tempore dolorem. Quod, voluptates praesentium aperiam et deleniti dolorem vitae temporibus incidunt voluptate fugiat amet itaque, a culpa in esse ducimus. Laudantium obcaecati, architecto nihil sed repellendus maiores molestias id! Quis voluptatum optio architecto? Dolorem, quas iusto.",
   date = "Hune 24, 1999",
