@@ -1,33 +1,42 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
 
-import { Footer } from "./component/index";
-  
-
+import authService from "./appwrite/authService";
+import { Footer, GlyphCard, Header} from "./component";
+import { login, logout } from "./store/reducers/authSlice";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-  // Add or remove dark class to the HTML element
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }));
+        } else {
+          dispatch(logout);
+        }
+      })
+      .finally(() => setLoading(false));
+  }, [dispatch]);
 
-  return (
-
+  return !loading ? (
     <>
-    <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
-      >
-        Toggle Dark Mode
-      </button>
-      <Footer/>
+      <Header />
+      <main>
+        <Outlet />
+        <GlyphCard/>
+      </main>
+      <Footer />
     </>
-  )
+  ) : (
+    <h1 className="w-full h-screen flex justify-center items-center text-4xl text-black">
+      Page is loading....
+    </h1>
+  );
 }
 
-export default App
+export default App;
