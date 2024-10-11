@@ -17,7 +17,7 @@ const postSlice = createSlice({
 
     fetchPostSuccess: (state, action) => {
       state.isLoading = false;
-      state.post = action.payload;
+      state.posts = action.payload;
     },
 
     fetchPostFailure: (state, action) => {

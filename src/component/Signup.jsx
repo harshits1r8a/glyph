@@ -4,22 +4,22 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import authService from "../appwrite/authService";
-import { login as authLogin } from "../store/reducers/authSlice";
+import { login  } from "../store/reducers/authSlice";
 import { BackHome, Btn, Input, Logo } from "./index";
 
-const Login = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {register, handleSubmit} = useForm()
   const [error, setError] = useState("");
 
-  const login = async (data) => {
+  const signup = async (data) => {
     setError("");
     try {
-      const session = await authService.login(data);
-      if (session) {
+      const userData = await authService.createAccount(data);
+      if (userData) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(authLogin(data));
+        if (userData) dispatch(login(userData));
         navigate("/");
       }
     } catch (error) {
@@ -39,20 +39,27 @@ const Login = () => {
           <Logo width={"w-[4rem] mx-auto mb-2"} />
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
+        Sign up to create account
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
+        Already have an account?&nbsp;
           <Link
-            to="/signup"
+            to="/login"
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
-            Sign Up
+            Sign In
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className="mt-8">
+        <form onSubmit={handleSubmit(signup)} className="mt-8">
           <div className="space-y-5">
+            <Input
+            label="Full Name:"
+            placeholder="Enter your full name"
+            {...register("name", {
+                required : true,
+            })}
+            />
             <Input
               label="Email:"
               placeholder="Enter your email"
@@ -85,7 +92,7 @@ const Login = () => {
               })}
             />
             <Btn type="Submit" className="w-full">
-              Sing in
+              Create Account
             </Btn>
           </div>
         </form>
@@ -94,4 +101,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
