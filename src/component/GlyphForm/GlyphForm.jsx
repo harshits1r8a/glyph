@@ -78,7 +78,7 @@ const GlyphForm = ({post}) => {
   },[watch, slugTransform, setValue])
 
   return (
-    <Container>
+    <Container className="dark:bg-[#0d0d0d]">
       <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
         <div className='w-2/3 px-2'>
          <Input

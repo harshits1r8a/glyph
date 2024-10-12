@@ -34,7 +34,7 @@ export default function Glyph() {
   };
 
   return post ? (
-    <Container>
+    <Container className="dark:bg-[#0d0d0d]">
       <div className="w-full flex justify-center mb-4  border rounded-xl p-2">
         <img
           src={storageService.getFilePreview(post.featuredImage)}
