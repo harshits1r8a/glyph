@@ -8,7 +8,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear(); // Get the current year
   return (
     <div>
-      <Container className='bg-slate-200'>
+      <Container className='bg-slate-200 dark:bg-black'>
         <footer>
           <div className="w-full text-center">
             <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">

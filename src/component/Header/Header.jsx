@@ -11,6 +11,13 @@ const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // This makes the scroll smooth
+    });
+  };
+
   const navItems = [
     {
       name: "Home",
@@ -46,15 +53,19 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  // document.addEventListener('click', function() {
+  //   setIsOpen(false)
+  // });
+
   return (
-    <Container className={"sticky top-0 bg-slate-200"}>
+    <Container className={"sticky top-0 bg-slate-200 dark:bg-black z-40"}>
       <header>
-        <nav className=" flex sm:flex justify-between items-center relative z-50">
+        <nav className=" flex sm:flex justify-between items-center relative">
           <HiMenuAlt1
             className="sm:hidden text-3xl cursor-pointer"
             onClick={toggleMenu}
           />
-          <div>
+          <div onClick={handleLogoClick}>
             <Link to={"/"}>
               <Logo width={"w-[2rem]"} />
             </Link>
@@ -84,35 +95,33 @@ const Header = () => {
         </nav>
         {/* Mobile Menu - Dropdown */}
         <div
-          className={`sm:hidden z-20 bg-white dark:bg-gray-900 w-[40%] h-screen absolute left-0  transition-all duration-300 ease-in-out  transform ${
+          className={`sm:hidden  bg-slate-200  dark:bg-black w-[45%] h-screen absolute left-0  transition-all duration-300 ease-in-out  transform ${
             isOpen ? "translate-x-0" : "-translate-x-[400%]"
           }`}
         >
           <nav className="px-4 py-4">
-            <a
-              href="#"
-              className="block py-2 text-gray-900 dark:text-white hover:text-blue-500"
-            >
-              Home
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-900 dark:text-white hover:text-blue-500"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-900 dark:text-white hover:text-blue-500"
-            >
-              Services
-            </a>
-            <a
-              href="#"
-              className="block py-2 text-gray-900 dark:text-white hover:text-blue-500"
-            >
-              Contact
-            </a>
+            <ul className=" flex flex-col gap-5 mt-5">
+              {navItems.map((item) =>
+                item.active ? (
+                  <li key={item.name} >
+                    <button
+                      // className=""
+                      className="font-medium w-full text-left hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black  px-3 py-2 rounded transition-all duration-500 ease-in-out"
+                      onClick={() => {navigate(item.slug)
+                        setIsOpen(false)
+                      }}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ) : null
+              )}
+              {authStatus && (
+                <li>
+                  <LogoutBTN />
+                </li>
+              )}
+            </ul>
           </nav>
         </div>
       </header>

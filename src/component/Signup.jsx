@@ -27,7 +27,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen absolute top-0 left-0 bg-black pt-4 pb-4 pr-5 pl-5 xl:pl-0 xl:pr-0 ">
+    <div className="flex flex-col items-center justify-center w-screen z-50 h-screen absolute top-0 left-0 bg-black pt-4 pb-4 pr-5 pl-5 xl:pl-0 xl:pr-0 ">
       <div className="flex w-full justify-between px-8 absolute top-8 left-0">
         <BackHome />
         {/* <DarkModeBTN /> */}
