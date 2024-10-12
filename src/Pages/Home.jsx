@@ -31,8 +31,8 @@ const Home = () => {
     }
     return (
         <div className='w-full '>
-            <Container className='dark:bg-[#0d0d0d]'>
-                <div className='flex flex-wrap justify-center gap-5'>
+            <Container >
+                <div className='flex flex-wrap justify-center gap-5 '>
                     {posts.map((post) => (
                         <div key={post.$id} className='p-2 '>
                             <GlyphCard {...post} />
