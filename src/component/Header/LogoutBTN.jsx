@@ -8,11 +8,12 @@ import Btn from '../Button/Btn'
 const LogoutBTN = () => {
     const dispatch = useDispatch()
     const logoutHandler = ()=>{
-        authService.logout()
-                    .then(()=>dispatch(logout()))
+        authService.logout().then(()=>dispatch(logout()))
     }
+    console.log(logoutHandler);
+    
   return (
-    <Btn btnHandler={logoutHandler} >Logout</Btn>
+    <Btn onClick={logoutHandler} >Logout</Btn>
   )
 }
 

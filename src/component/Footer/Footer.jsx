@@ -8,7 +8,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear(); // Get the current year
   return (
     <div>
-      <Container>
+      <Container className='bg-slate-200'>
         <footer>
           <div className="w-full text-center">
             <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
@@ -49,7 +49,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <hr className="h-[0.10rem] bg-gray-200 rounded mt-5 mb-5" />
+            <hr className="h-[0.10rem] bg-gray-300 rounded mt-5 mb-5" />
 
             <div className="w-full  sm:flex sm:items-center sm:justify-between">
               <p className="text-base text-left text-gray-700 dark:text-white">

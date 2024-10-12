@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import databaseService from "../../appwrite/databaseService"
+// import databaseService from "../../appwrite/databaseService"
+// import databasesservice from '../../appwrite/databaseService'
+import databaseService from '../../appwrite/databaseService'
 import storageService from "../../appwrite/storageService"
 import {Btn,Container,Input, RTE, Select} from "../index"
 
@@ -20,34 +22,37 @@ const GlyphForm = ({post}) => {
 
   const navigate = useNavigate();
   const userData = useSelector(state => state.auth.userData)
+  
 
-  const submit = async (data)=>{
+  const submit = async(data)=>{
     if(post){
       const file = data.image[0] ? await storageService.uploadFile(data.image[0] ): null;
       if(file){
-        storageService.deleteFile(post.featuredImg)
+        storageService.deleteFile(post.featuredImage)
       }
 
       const dbPost = await databaseService.updatePost(post.$id, {
         ...data,
-        featuredImg : file ? file.$id : undefined
+        featuredImage : file ? file.$id : undefined
       })
 
       if(dbPost){
-        navigate(`/post/${dbPost.$id}`)
+        navigate(`/glyph/${dbPost.$id}`)
       }
     }else{
       const file = await storageService.uploadFile(data.image[0])
-
       if(file){
         const fileId = file.$id;
-        data.featuredImg = fileId
+        data.featuredImage = fileId
+        console.log(userData);
+        console.log(userData.$id);
+        
         const dbPost = await databaseService.createPost({
           ...data,
           userId : userData.$id
         })
         if(dbPost){
-          navigate(`/post/${dbPost.$id}`)
+          navigate(`/glyph/${dbPost.$id}`)
         }
       }
     }
@@ -91,7 +96,7 @@ const GlyphForm = ({post}) => {
             setValue("slug", slugTransform(e.currentTarget.value),{shouldValidate: true})
            }}
          />
-         <RTE label="content" name="content" control={control} defaultValue={getValues("content")}/>
+         <RTE label="Content : " name="content" control={control} defaultValue={getValues("content")}/>
         </div>
 
         <div className='w-1/3 px-2'>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import DarkModeBTN from "../Button/DarkModeBTN";
 import Container from "../Container/Container";
@@ -19,7 +19,7 @@ const Header = () => {
     },
     {
       name: "Glyphs",
-      slug: "/glyphs",
+      slug: "/all-glyph",
       active: true,
     },
     {
@@ -46,17 +46,18 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-
   return (
-    <Container className={"sticky top-0 "}>
-      <header >
+    <Container className={"sticky top-0 bg-slate-200"}>
+      <header>
         <nav className=" flex sm:flex justify-between items-center relative z-50">
           <HiMenuAlt1
             className="sm:hidden text-3xl cursor-pointer"
             onClick={toggleMenu}
           />
           <div>
-            <Logo width={"w-[2rem]"} />
+            <Link to={"/"}>
+              <Logo width={"w-[2rem]"} />
+            </Link>
           </div>
           <div className="flex items-center gap-5">
             <ul className="hidden sm:flex items-center gap-5">

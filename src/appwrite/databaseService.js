@@ -1,8 +1,8 @@
 import { Client, Databases, Query } from "appwrite";
 
-import config from "../config/config.js";
+import config from "../config/config";
 
-export class Databasesservice {
+export class DatabaseService {
   client = new Client();
   databases;
 
@@ -14,16 +14,7 @@ export class Databasesservice {
   }
 
   //   CreatePost
-  async createPost({
-    title,
-    slug,
-    content,
-    featuredImg,
-    status,
-    userId,
-    category,
-    tags,
-  }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
@@ -32,11 +23,9 @@ export class Databasesservice {
         {
           title,
           content,
-          featuredImg,
+          featuredImage,
           status,
           userId,
-          category,
-          tags,
         }
       );
     } catch (error) {
@@ -46,10 +35,7 @@ export class Databasesservice {
   }
 
   //   updatePost
-  async updatePost(
-    slug,
-    { title, content, featuredImg, status, category, tags }
-  ) {
+  async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
         config.appwriteDatabaseId,
@@ -58,10 +44,8 @@ export class Databasesservice {
         {
           title,
           content,
-          featuredImg,
+          featuredImage,
           status,
-          category,
-          tags,
         }
       );
     } catch (error) {
@@ -73,14 +57,15 @@ export class Databasesservice {
   //   deletePost
   async deletePost(slug) {
     try {
-      return await this.databases.deleteDocument(
+       await this.databases.deleteDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
         slug
-      );
+      )
+      return true
     } catch (error) {
       console.log("Appwrite serive :: deletePost :: error", error);
-      throw error;
+      return false
     }
   }
 
@@ -103,8 +88,8 @@ export class Databasesservice {
   async getPosts(
     queries = [
       Query.equal("status", "active"),
-      Query.limit(10),
-      Query.offset(0),
+      // Query.limit(10),
+      // Query.offset(0),
     ]
   ) {
     try {
@@ -120,6 +105,6 @@ export class Databasesservice {
   }
 }
 
-const databasesservice = new Databasesservice();
+const databaseService = new DatabaseService();
 
-export default databasesservice;
+export default databaseService;

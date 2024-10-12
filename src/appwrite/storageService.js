@@ -15,7 +15,7 @@ export class StorageService {
 
   async uploadFile(file) {
     try {
-      await this.storage.createFile(config.appwriteBucketId, ID.unique(), file);
+      return await this.storage.createFile(config.appwriteBucketId, ID.unique(), file);
     } catch (error) {
       console.log("Appwrite serive :: uploadFile :: error", error);
       return false;
@@ -32,9 +32,9 @@ export class StorageService {
     }
   }
 
-  async getFilePreview(fileId) {
+   getFilePreview(fileId) {
     try {
-      return this.storage.getFilePreview(config.appwriteBucketId, fileId);
+      return   this.storage.getFilePreview(config.appwriteBucketId, fileId);
     } catch (error) {
       console.log("Appwrite serive :: getFilePreview :: error", error);
       return false;
