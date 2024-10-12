@@ -12,7 +12,7 @@ const AllGlyphs = () => {
     }
   });
   return (
-    <Container>
+    <Container className="dark:bg-[#0d0d0d]">
       <div className=" flex flex-wrap gap-5">
         {posts.map((post) => (
           <div key={post.$id} className="p-2 ">
